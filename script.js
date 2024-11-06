@@ -15,15 +15,17 @@ class Flight {
     }
 }
 
+let lastFlight = undefined; 
+
 button.addEventListener('click', (e) => {
     const searchInputValue = searchInput.value; 
     if (!searchInputValue) {
         return
     }
 
-    const newFlight = new Flight(searchInputValue); 
-    console.log(newFlight)
+    lastFlight = new Flight(searchInputValue); 
+    console.log(lastFlight)
 
-    newFlight.getDelay()
-    newFlight.getStatus()
+    lastFlight.getDelay()
+    lastFlight.getStatus()
 })
