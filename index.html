@@ -6,31 +6,48 @@
     <title>KnowYourFlight</title>
 </head>
 <body>
-        <div id="entire-content">
-            <header>
-                <div id="menu">
-                    <div id="logo">
-                        <img src="img/KnowYourFlightLogo.png" alt="">
-                    </div>
-                    <div id="navbar">
-                        <a href="#" class="title">Search</a>
-                        <a href="#" class="title">About</a>
-                    </div>
-                </div>
-            </header>
-            <main>
-                <div id="box">
-                    <div id="main-text">
-                        <p id="search-text">Search for your flight and we will provide you the information you need to fly without fear.</p>
-                    </div>
-                <div id="main-input">
-                    <input type="text" placeholder="Example: LA8180" id="search-input">
-                </div>
-                <div id="button">
-                    <button type="submit" id="search-btn">Search</button>
-                </div>
-            </main>
+    <header>
+        <div id="menu">
+            <div id="logo">
+                <img src="img/KnowYourFlightLogo.png" alt="">
+            </div>
+            <div id="navbar">
+                <a href="#" class="title">Search</a>
+                <a href="#" class="title">About</a>
+            </div>
         </div>
-<script src="script.js"></script>    
+    </header>
+    <main>
+        <div id="box">
+            <div id="main-text">
+                <p id="search-text">Search for your flight and we will provide you the information you need to fly without fear.</p>
+            </div>
+        <div id="main-input">
+            <input type="text" placeholder="Example: LA8180" id="search-input">
+        </div>
+        <div id="button">
+            <button type="submit" id="search-btn">Search</button>
+        </div>
+
+        <div id="flight-data">
+            <div id="aircraft-column" class="columns">
+                <h2 class="titlesColumn">Aircraft</h1>
+                <div id="imageContainer">
+                    <img src="" alt="" id="aircraft-img">
+                </div>
+                <p id="aircraft-name"></p>
+            </div>  
+
+            <div id="airport-column" class="columns">
+                <h2 class="titlesColumn">Airport</h1>
+                    <p id="airport-name"></p>
+            </div>
+
+            <div id="delay-column" class="columns">
+                <h2 class="titlesColumn">Delays</h1>
+            </div>
+        </div>
+    </main>
+    <script src="script.js"></script>    
 </body>
 </html>
