@@ -3,6 +3,10 @@ let searchInput = document.getElementById('search-input')
 let aircraftImage = document.getElementById('aircraft-img')
 let aircraftName = document.getElementById('aircraft-name')
 let airportName = document.getElementById('airport-name')
+let airportCity = document.getElementById('city-name') 
+let airportIcao = document.getElementById('airport-icao')
+let airportIata = document.getElementById('aiport-iata')
+let airportTimezone = document.getElementById('airport-timezone')
 
 class Flight {
     constructor(flightId) {
@@ -38,6 +42,7 @@ class Flight {
         const response = await airportData.json();
         return response; 
     }
+
 }
 
 let lastFlight = undefined; 
@@ -52,10 +57,16 @@ button.addEventListener('click', async (e) => {
 
     const flightData = await lastFlight.getFlightData();
     const airportData = await lastFlight.getAirportData(flightData.arrival.airport.icao);
+    const newLat = airportData.location.lat
+    const newLng = airportData.location.lon
     console.log(flightData)
     console.log('Airport Data', airportData)
 
     aircraftImage.src = flightData.aircraft.image.url; 
     aircraftName.innerHTML = flightData.aircraft.model; 
     airportName.innerHTML = airportData.shortName; 
+    airportCity.innerHTML = airportData.municipalityName; 
+    airportIcao.innerHTML = airportData.icao; 
+    airportIata.innerHTML = airportData.iata; 
+    airportTimezone.innerHTML = airportData.timeZone; 
 })
