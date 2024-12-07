@@ -7,6 +7,7 @@ let airportCity = document.getElementById('city-name')
 let airportIcao = document.getElementById('airport-icao')
 let airportIata = document.getElementById('aiport-iata')
 let airportTimezone = document.getElementById('airport-timezone')
+let mapWidget = document.getElementById('map-widget')
 
 class Flight {
     constructor(flightId) {
@@ -43,6 +44,24 @@ class Flight {
         return response; 
     }
 
+    async getFlightDelayData () {
+        const apiFlightUrl = `https://api.magicapi.dev/api/v1/aedbx/aerodatabox/flights/${this.flightId}/delays`
+
+        const flightDelayData = await fetch (apiFlightUrl, {
+            headers: {
+                'x-magicapi-key': 'cm35z0y7q0001l803rkcl3wiu' 
+            }
+        }); 
+
+        if (flightDelayData.status == 204) {
+            alert('Flight not found. Try again'); 
+            return;
+        }
+
+        const response = await flightDelayData.json(); 
+        return response
+    }
+
 }
 
 let lastFlight = undefined; 
@@ -57,10 +76,13 @@ button.addEventListener('click', async (e) => {
 
     const flightData = await lastFlight.getFlightData();
     const airportData = await lastFlight.getAirportData(flightData.arrival.airport.icao);
-    const newLat = airportData.location.lat
-    const newLng = airportData.location.lon
+    const flightDelay = await lastFlight.getFlightDelayData(); 
+
     console.log(flightData)
     console.log('Airport Data', airportData)
+    console.log(flightDelay)
+
+    mapWidget.src = `https://www.google.com/maps/embed/v1/place?key=AIzaSyBqTuC8p22-RnMW9NLvb9QMKQisnYU-Pl8&q=${airportData.fullName}&zoom=14&language=en`
 
     aircraftImage.src = flightData.aircraft.image.url; 
     aircraftName.innerHTML = flightData.aircraft.model; 
