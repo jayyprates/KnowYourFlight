@@ -76,7 +76,7 @@ main {
 }
 
 #flight-data {
-    display: flex;
+    display: none;
     height: 100%;
     width: 100%;
     justify-content: space-around;
@@ -104,4 +104,14 @@ main {
 #aircraft-img {
     width: 100%;
 }
+
+#loading {
+    display: none; 
+}
+
+#img-loading {
+    width: 50px;
+    margin-top: 15px;
+}
+
 

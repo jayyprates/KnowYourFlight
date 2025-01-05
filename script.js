@@ -8,6 +8,8 @@ let airportIcao = document.getElementById('airport-icao')
 let airportIata = document.getElementById('aiport-iata')
 let airportTimezone = document.getElementById('airport-timezone')
 let mapWidget = document.getElementById('map-widget')
+let displayData = document.getElementById('flight-data')
+let displayLoading = document.getElementById('loading'); 
 
 class Flight {
     constructor(flightId) {
@@ -56,6 +58,9 @@ button.addEventListener('click', async (e) => {
 
     lastFlight = new Flight(searchInputValue); 
 
+    displayLoading.style.display = 'block'; 
+    displayData.style.display = 'none';
+
     const flightData = await lastFlight.getFlightData();
     const airportData = await lastFlight.getAirportData(flightData.arrival.airport.icao); 
 
@@ -71,4 +76,7 @@ button.addEventListener('click', async (e) => {
     airportIcao.innerHTML = airportData.icao; 
     airportIata.innerHTML = airportData.iata; 
     airportTimezone.innerHTML = airportData.timeZone; 
+
+    displayLoading.style.display = 'none'; 
+    displayData.style.display = 'flex'; 
 })
